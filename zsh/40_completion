@@ -1,0 +1,76 @@
+autoload -U compinit && compinit
+zmodload zsh/complist
+
+autoload zmv
+## Replace spaces in filenames with a underline
+# zmv '* *' '$f:gs/ /_'
+# zmv '(* *)' '${1// /}'
+# zmv -Q "(**/)(* *)(D)" "\$1\${2// /_}"
+## # Change the suffix from *.sh to *.pl
+# zmv -W '*.sh' '*.pl'
+## # lowercase/uppercase all files/directories
+# zmv '(*)' '${(L)1}' # lowercase
+# zmv '(*)' '${(U)1}' # uppercase
+
+# matches case insensitive for lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# pasting with tabs doesn't perform completion
+zstyle ':completion:*' insert-tab pending
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# don't include cwd in list of ../<TAB>
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+
+# ksh like binding
+# XXX not sure what this does
+bindkey -M viins "\e\\" complete-word
+
+# without this everything gets mixed up for _expand
+zstyle ':completion:*:*:*:*' group-name ''
+zstyle ':completion:*' completer _expand _complete _match _correct _approximate
+# below may need adjusting, if you type ae<tab> it gives bad results
+# giving you all 2 letter commands
+zstyle ':completion:*' max-errors 4 not-numeric
+# I never seen this prompt, where should it appear?
+# corrections still work, ie cd /u/l/s/zsh<Tab> works
+zstyle ':completion:*' prompt 'Made %e corrections'
+zstyle ':completion:*:expand:*:*' tag-order 'all-expansions expansions'
+zstyle ':completion:*:*:*:*' group-order all-expansions expansions 
+# this enables menu completion, but on the 2nd tab only
+# select without =1 does not work the same way
+zstyle ':completion:*:*:*:*' menu select=1
+zstyle ':completion:*:*:*:*' verbose yes
+# without below glob in the middle does not work
+zstyle ':completion:*:*:*:*' list-suffixes yes
+
+# Alt-backspace to undo
+bindkey -M menuselect "\M-^?" undo
+bindkey -M menuselect "^Z" undo
+bindkey -M menuselect "^N" vi-insert
+# shift-tab go backward
+bindkey -M menuselect "\e[Z" up-line-or-history
+# C-Space
+bindkey -M menuselect "^@"  accept-and-infer-next-history
+# Make enter exit menu selection and do actual command
+# instead of just exiting the menu selection
+bindkey -M menuselect "^M" .accept-line
+# sort files by date and follow symlinks
+#zstyle ':completion:*:*:*:*' file-sort date follow
+compinit -C
+# I like my Esc/ search very much, put it back
+bindkey -rM viins "\e/" 
+
+# http://grml.org/zsh/zsh-lovers.html
+#_force_rehash() {
+#	(( CURRENT == 1 )) && rehash
+#	return 1	# Because we didn't really complete anything
+#}
+#zstyle ':completion:*' completer _oldlist _expand _force_rehash _complete ...
+
+# haskell stuff
+# http://www.haskell.org/haskellwiki/Zsh
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:approximate:*' max-errors 1 numeric

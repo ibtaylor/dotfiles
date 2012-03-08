@@ -1,0 +1,51 @@
+# Mac Ports
+PORTS_HOME=/opt/local
+PORTS_BIN=$PORTS_HOME/bin
+PORTS_SBIN=$PORTS_HOME/sbin
+# XXX - careful
+PORTS_OBIN=$PORTS_HOME/x86_64-apple-darwin11.1.0/bin
+export PORTS_BIN PORTS_SBIN
+
+# Mac specific, add to path here
+path_prepend "$PORTS_OBIN"
+path_prepend "$PORTS_BIN"
+path_prepend "$PORTS_SBIN"
+
+# Android SDK
+DROID_HOME=$HOME/Library/AndroidSDK
+DROID_TOOLS=$DROID_HOME/tools
+DROID_PTOOLS=$DROID_HOME/platform-tools
+
+## Haskell
+# ghc-pkg
+GHCPKG_HOME=$HOME/library/Haskell
+GHCPKG_BIN=$GHCPKG_HOME/bin
+# cabal
+CABAL_HOME=$HOME/.cabal
+CABAL_BIN=$CABAL_HOME/bin
+
+# Setup Amazon EC2 Command-Line Tools (only on Mac right now)
+EC2_HOME=$HOME/.ec2
+if [ -d "$EC2_HOME" ]; then
+  EC2_URL='https://ec2.us-east-1.amazonaws.com'
+  EC2_PRIVATE_KEY=`ls $EC2_HOME/pk-*.pem`
+  EC2_CERT=`ls $EC2_HOME/cert-*.pem`
+  EC2_BIN="$EC2_HOME/bin"
+  export EC2_HOME EC2_PRIVATE_KEY EC2_PRIVATE_KEY EC2_CERT
+fi
+
+# Java
+JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
+
+## Ruby
+# rvm
+#  http://beginrescueend.com/integration/macports/
+RVM_HOME=$HOME/.rvm
+CC=/usr/bin/gcc-4.2
+
+AIRPORT_HOME=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources
+PATH=$PATH:$AIRPORT_HOME
+
+PAGER='less'
+EDITOR='mvim -f --nomru -c "au VimLeave * !open -a Terminal"'
+VISUAL="$EDITOR"

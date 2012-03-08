@@ -1,0 +1,9 @@
+#!/bin/sh
+
+source ~/.profile
+
+xset +fp /usr/share/fonts/local
+xset +fp /usr/share/fonts/TTF
+xset fp rehash
+xsetroot -solid '#000000'
+exec awesome

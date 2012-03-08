@@ -1,0 +1,29 @@
+# Aliases common to many shells
+
+alias info='info --vi-keys'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+[ -x "$(which gdircolors)" ] && alias dircolors='gdircolors'
+[ -x "$(which gls)"        ] && alias ls='gls --color=auto'
+
+# vim
+alias vi="vim"
+
+# svn
+alias sdrpc="svn diff -r PREV:COMMITTED"
+
+# git
+alias gl='git pull'
+alias gp='git push'
+alias gd='git diff'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gco='git checkout'
+alias gb='git branch'
+alias gs='git status'
+alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+
+# wget
+alias mirror='wget -mpk -P ~/data/mirrored/sites'

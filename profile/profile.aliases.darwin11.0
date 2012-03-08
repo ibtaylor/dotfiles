@@ -1,0 +1,10 @@
+# OS X Lion
+alias flushdnscache='sudo killall -HUP mDNSResponder'
+
+# ls
+command -v gdircolors > /dev/null && alias dircolors='gdircolors'
+command -v gls        > /dev/null && alias ls='gls --color=auto'
+
+# vim
+MVIM_BIN="$PORTS_BIN/mvim"
+[ -x "$MVIM_BIN" ] && alias vim="$MVIM_BIN -v"

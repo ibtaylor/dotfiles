@@ -1,0 +1,74 @@
+bindkey -v
+bindkey '^[^[[D' backward-word
+bindkey '^[^[[C' forward-word
+bindkey '^[[5D' beginning-of-line
+bindkey '^[[5C' end-of-line
+bindkey '^[[3~' delete-char
+bindkey '^[^N' newtab
+# dumped
+bindkey "^A"-"^C" self-insert
+bindkey "^D" list-choices
+bindkey "^E"-"^F" self-insert
+bindkey "^G" list-expand
+bindkey "^H" vi-backward-delete-char
+bindkey "^I" expand-or-complete
+bindkey "^J" accept-line
+bindkey "^K" self-insert
+bindkey "^L" clear-screen
+bindkey "^M" accept-line
+bindkey "^N"-"^P" self-insert
+bindkey "^Q" vi-quoted-insert
+bindkey "^R" redisplay
+bindkey "^S"-"^T" self-insert
+bindkey "^U" vi-kill-line
+bindkey "^V" vi-quoted-insert
+bindkey "^W" vi-backward-kill-word
+bindkey "^X"-"^Z" self-insert
+bindkey "^[" vi-cmd-mode
+bindkey "^[OA" vi-up-line-or-history
+bindkey "^[OB" vi-down-line-or-history
+bindkey "^[OC" vi-forward-char
+bindkey "^[OD" vi-backward-char
+bindkey "^[[A" vi-up-line-or-history
+bindkey "^[[B" vi-down-line-or-history
+bindkey "^[[C" vi-forward-char
+bindkey "^[[D" vi-backward-char
+bindkey "^\\\\"-"~" self-insert
+bindkey "^?" vi-backward-delete-char
+bindkey "\M-^@"-"\M-^?" self-insert
+
+# start line editing in command mode
+#zle-line-init() {
+#    zle -K vicmd;
+#}
+#zle -N zle-line-init
+
+# tap jj to to into vi command mode
+bindkey 'jj' vi-cmd-mode
+
+# readline does something weird with _, but i want it to act like vim
+bindkey -M vicmd '_' vi-first-non-blank
+
+# C-d -> really exit, even if the line isn't empty
+really_exit () {
+    BUFFER="exit"
+    zle accept-line
+}
+zle -N really_exit
+bindkey "" really_exit
+
+# C-k -> cd ..
+cd_up () {
+    BUFFER='cd ..'
+    zle accept-line
+}
+zle -N cd_up
+bindkey "" cd_up
+
+# C-h -> popd
+cd_pop () {
+    BUFFER='popd'
+    zle accept-line
+}
+zle -N cd_pop
+#bindkey "" cd_pop

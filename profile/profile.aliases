@@ -1,0 +1,47 @@
+# Aliases common to many shells
+
+# info
+alias info='info --vi-keys'
+
+# grep
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# vim
+alias vi="vim"
+
+# svn
+alias sdrpc="svn diff -r PREV:COMMITTED"
+
+# git
+if command -v git > /dev/null; then
+  alias gl='git pull'
+  alias gp='git push'
+  alias gd='git diff'
+  alias gc='git commit'
+  alias gca='git commit -a'
+  alias gco='git checkout'
+  alias gb='git branch'
+  alias gs='git status'
+  alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+fi
+
+# ruby
+if command -v ruby > /dev/null; then
+  # sort input files' lines by increasing length
+  alias length='\
+    ruby -e "
+      readlines.collect {|line|
+        line.chomp
+      }.sort {|a,b|
+        a.size <=> b.size
+      }.each {|e|
+        puts e
+      }
+    " \
+  '
+fi
+
+# wget
+command -v wget > /dev/null && alias mirror='wget -mpk -P ~/data/mirrored/sites'

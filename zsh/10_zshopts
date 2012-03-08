@@ -1,0 +1,41 @@
+setopt always_to_end                    # always go to end of word after completion
+setopt append_history                   # adds history
+setopt auto_cd                          # do cd path if only 'path' is given as command
+setopt auto_pushd                       # cd = pushd
+setopt bang_hist                        # ! expansion
+setopt c_bases                          # understand 12#120 as 120 in base 12
+setopt complete_in_word                 # we want completion to be done from cursor in word
+setopt correct
+setopt extended_glob
+setopt extended_history                 # add timestamps to history
+setopt hist_ignore_all_dups             # don't record dupes in history
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt hist_verify
+setopt inc_append_history share_history # adds history incrementally and share it across sessions
+setopt interactive_comments             # allow comments in interactive shell
+setopt local_options                    # allow functions to have local options
+setopt local_traps                      # allow functions to have local traps
+setopt no_beep
+setopt no_bg_nice                       # don't nice background tasks
+setopt no_hup
+setopt no_list_beep
+setopt no_menu_complete                 # control with zstyle
+setopt no_rm_star_wait                  # dont't idle 10 seconds
+setopt prompt_subst
+setopt pushd_ignore_dups                # ignore dups in pushd
+setopt pushd_silent                     # don't print stack after push/pop
+setopt rm_star_silent
+setopt share_history                    # share history between sessions ???
+setopt transient_rprompt                # rprompt disappears after i hit enter
+setopt vi # use bindkeys
+
+zle -N newtab
+
+typeset -ga preexec_functions
+typeset -ga precmd_functions
+typeset -ga chpwd_functions
+
+fpath=($RVM_HOME/scripts/zsh/Completion $fpath)
+fpath=(~/.zsh/functions $fpath)
+autoload -U ~/.zsh/functions/*(:t)

@@ -1,0 +1,75 @@
+#
+# Functions used by .profile and .profile.*
+#
+path_append() {
+  [ -d "$1" ] && PATH="$PATH:$1"
+}
+path_prepend() {
+  [ -d "$1" ] && PATH="$1:$PATH"
+}
+
+#
+# Source OS-specific profile
+#
+PROFILE_OS="$HOME/.profile.$OSTYPE"
+export EDITOR VISUAL PAGER
+
+#
+# Aliases
+#
+PROFILE_ALIASES="$HOME/.profile.aliases"
+PROFILE_ALIASES_OS="$HOME/.profile.aliases.$OSTYPE"
+
+#
+# Source external files
+#
+
+[ -f "$PROFILE_OS"         ] && source "$PROFILE_OS"
+[ -f "$PROFILE_ALIASES"    ] && source "$PROFILE_ALIASES"
+[ -f "$PROFILE_ALIASES_OS" ] && source "$PROFILE_ALIASES_OS"
+
+#
+# Path
+#
+
+# Android
+[ "$DROID_HOME" ] && DROID_TOOLS="$DROID_HOME/tools"
+[ "$DROID_HOME" ] && DROID_PTOOLS="$DROID_HOME/platform-tools"
+path_append "$DROID_TOOLS"
+path_append "$DROID_PTOOLS"
+# Haskell
+[ "$GHCPKG_HOME" ] && GHCPKG_BIN="$GHCPKG_HOME/bin"
+[ "$CABAL_HOME"  ] && CABAL_BIN="$CABAL_HOME/bin"
+path_append "$GHCPKG_BIN"
+path_append "$CABAL_BIN"
+
+path_prepend "$PORTS_BIN"
+path_prepend "$PORTS_SBIN"
+path_append "$EC2_BIN"
+
+path_prepend "$HOME/root/bin"
+export PATH
+
+# If not running interactively, don't do anything more
+[ -z "$PS1" ] && return
+
+#
+# Application Settings
+#
+
+unset MAILCHECK # Don't check mail
+unset LOGCHECK  # Seconds between login/logout activity using watch parameter
+# Less
+LESSHISTFILE=-
+export LESSHISTFILE
+# Grep
+GREP_OPTIONS="--color=auto"
+GREP_COLOR="01;32"
+
+export GREP_OPTIONS GREP_COLOR
+
+DIRCOLORS="$HOME/.dircolors"
+command -v dircolors > /dev/null && eval $(dircolors -b "$DIRCOLORS")
+
+RVM_SCRIPT="$HOME/.rvm/scripts/rvm"
+[ -s "$RVM_SCRIPT" ] && . "$RVM_SCRIPT" # Load RVM function

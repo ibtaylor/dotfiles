@@ -1,0 +1,8 @@
+#!/bin/sh
+case "$OSTYPE" in
+  darwin*)
+    export CFLAGS="-O2 -arch x86_64"
+    export LDFLAGS="-L/opt/local/lib"
+    export CPPFLAGS="-I/opt/local/include"
+  ;;
+esac

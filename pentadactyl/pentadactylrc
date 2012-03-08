@@ -1,0 +1,50 @@
+loadplugins '\.(js|penta)$'
+
+set mapleader=","
+
+"set! browser.dom.window.dump.enabled=true
+"set! devtools.errorconsole.enabled=true
+
+" don't switch to middle- or ctrl-clicked links
+set activate-=links
+
+" Search shortcuts
+command! -nargs=* gg open google <args>
+map  s :gg<Space>
+nmap s :gg<Space>
+vmap s :gg<Space>
+
+noremap <F1> :tab<Space>:help<Space>
+noremap <C-h> :open http://www.haskell.org/hoogle/?hoogle=
+
+" Mappings
+map <C-r> :restart<CR>
+map <Right> gt
+map <Left> gT
+map <S-Right> :tabmove! +1<CR>
+map <S-Left> :tabmove! -1<CR>
+map <C-y> <C-6>
+map <C-y> <C-6>
+map <Leader>b :set guioptions!=B<CR>
+
+command! inlineimages js (function($) {orig$=$; $.each(buffer.allFrames, function(){win=this.wrappedJSObject; $=function(sel){return orig$(sel, win.document)} ; win.document.ondragstart=function(){return false};dst=function(e){return (p=Math.pow)(p(e.clientX-(rc=e.target.getBoundingClientRect()).left,2)+p(e.clientY-rc.top,2),.5)};$("[href~=imgur]").not($(t="[href$=jpeg],[href$=gif],[href$=png],[href$=jpg]")).each(function(){this.href+='.jpg'});void($(t).not(".EGraw").attr({'class':'EGraw',target:'blank'}).each(function(){$(this).append($('<span />').toggle(function(e){$(this).html(' [-]').next().show();return false},function(e){$(this).html(' [+]').next().hide();return false}).click()).append($('<img>').attr({src:this.href,style:'display:block;max-width:500px;max-height:500px',title:'Drag to resize'}).mousedown(function(e){(t=this.wrappedJSObject).iw=t.width;t.d=dst(e);t.dr=false;t.style.maxHeight="none";e.preventDefault();}).mousemove(function(e){if((t=this.wrappedJSObject).d){t.style.maxWidth=t.style.width=((dst(e))*t.iw/t.d)+"px";t.dr=true}}).mouseout(f=function(e){(t=this.wrappedJSObject).d=false;if(t.dr)return false}).click(f))}))})})(content.wrappedJSObject.$ || $);
+
+" Options
+set guioptions=nsb
+"set showtabline=0
+"set verbose=9
+set complete=sb
+set wildmode=list:longest,full
+"set wildoptions=sort
+set novisualbell
+"set focuscontent=true
+"set popups=2
+set pageinfo=Hfghm
+
+javascript dactyl.beep = function() { return false; }
+
+loadplugins
+
+" Abbreviations
+
+source! ~/.pentadactyl.local

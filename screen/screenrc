@@ -1,0 +1,9 @@
+vbell off
+startup_message off
+attrcolor b ".I"
+defbce "on"
+shell -$SHELL
+hardstatus on
+hardstatus alwayslastline
+#hardstatus string "%{= ky}%-Lw%{=r}%20>%n %t%{= ky}%+Lw %{= ky}%-=| %{= kw}%M%d %c%{-} %{=r} ${USER}@%H "
+hardstatus string "%{= ky}%-Lw%{=r}%20>%n %t%{= ky}%+Lw %{= ky}%-= %{=r} ${USER}@%H "

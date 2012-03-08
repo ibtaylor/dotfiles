@@ -1,0 +1,16 @@
+[user]
+  name  = Ian Taylor
+  email = ibtaylor@gmail.com
+
+[color]
+  branch      = auto
+  diff        = auto
+  interactive = auto
+  status      = auto
+  ui          = auto
+
+[sendemail]
+  confirm     = auto
+
+[core]
+  excludesfile = ~/.gitignore

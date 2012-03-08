@@ -1,0 +1,7 @@
+set nocompatible      " We're running Vim, not Vi!
+
+runtime bundle/pathogen/autoload/pathogen.vim
+
+" pathogen
+call pathogen#infect()
+call pathogen#helptags()

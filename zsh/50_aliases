@@ -1,0 +1,26 @@
+# completions for the filesystem
+# example: cd ~rumm<tab>
+typeset -A directories
+directories=(
+    'bsl'            "$HOME/repos/github/bsl"
+    'ibt'            "$HOME/repos/github/ibt"
+    'github'         "$HOME/repos/github"
+)
+for nickname in ${(k)directories}; do
+    hash -d $nickname=${directories[$nickname]}
+done
+
+alias -g G='| grep'
+alias -g L='| less'
+
+# git
+alias git='noglob git'
+
+# arch
+alias pacman='noglob pacman'
+alias packer='noglob packer'
+
+# misc
+alias wget='noglob wget'
+alias youtube-dl='noglob youtube-dl -o "%(stitle)s.%(ext)s"'
+alias find='noglob find'
