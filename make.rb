@@ -72,7 +72,7 @@ end
   full_dst_dir = File.dirname(full_dst)
 
   simple_exec ['mkdir', '-p', full_dst_dir]
-  simple_exec ['diff', '-q', src, full_dst]
+  simple_exec ['diff', src, full_dst]
   if $? != 0
     simple_exec ['cp', '-i', src, full_dst]
   end
