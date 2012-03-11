@@ -1,0 +1,4 @@
+## Haskell
+# cabal
+CABAL_HOME=$HOME/.cabal
+CABAL_BIN=$CABAL_HOME/bin
