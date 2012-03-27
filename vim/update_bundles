@@ -20,10 +20,12 @@ git_bundles = %w(
   git://github.com/tpope/vim-surround.git
   git://github.com/tpope/vim-unimpaired.git
   git://github.com/tsaleh/vim-tmux.git
+  git://github.com/vim-scripts/LaTeX-Suite-aka-Vim-LaTeX.git
   git://github.com/vim-scripts/jQuery.git
   git://github.com/vim-scripts/jellybeans.vim.git
   git://github.com/vim-scripts/localvimrc.git
   git://github.com/vim-scripts/matchit.zip.git
+  git://github.com/vim-scripts/netrw.vim.git
   git://github.com/vim-scripts/taglist.vim.git
 )
 

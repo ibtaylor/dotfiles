@@ -32,6 +32,7 @@ end
   'pentadactyl/pentadactylrc'          => '~/.%f',
   'profile/profile'                    => '~/.%f',
   'profile/profile.darwin11.0'         => '~/.%f',
+  'profile/profile.linux-gnu'          => '~/.%f',
   'profile/profile.aliases'            => '~/.%f',
   'profile/profile.aliases.darwin11.0' => '~/.%f',
   'ruby/irbrc'                         => '~/.%f',
