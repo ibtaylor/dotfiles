@@ -27,6 +27,7 @@ git_bundles = %w(
   git://github.com/vim-scripts/matchit.zip.git
   git://github.com/vim-scripts/netrw.vim.git
   git://github.com/vim-scripts/taglist.vim.git
+  git://github.com/vim-scripts/syslog-syntax-file.git
 )
 
 bundles_dir = File.join(File.dirname(__FILE__), "bundle")
